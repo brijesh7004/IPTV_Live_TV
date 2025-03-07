@@ -1,0 +1,734 @@
+/* Modern UI Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --primary-color: #7b68ee;
+    --primary-hover: #6a5acd;
+    --background-dark: #121212;
+    --background-card: #1e1e1e;
+    --background-light: #2c2c2c;
+    --text-color: #ffffff;
+    --text-secondary: #b0b0b0;
+    --border-radius: 12px;
+    --transition-speed: 0.3s;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+body {
+    background-color: var(--background-dark);
+    color: var(--text-color);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow: hidden;
+}
+
+.app-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--background-dark);
+}
+
+/* Sidebar */
+.sidebar {
+    width: 280px;
+    height: 100%;
+    background-color: var(--background-card);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: var(--shadow);
+    z-index: 2;
+}
+
+.logo {
+    padding: 10px 0;
+}
+
+.logo h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+/* Search */
+.search-container {
+    display: flex;
+    gap: 10px;
+    background-color: var(--background-light);
+    border-radius: var(--border-radius);
+    padding: 8px;
+}
+
+.search-container input {
+    flex: 1;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 16px;
+    outline: none;
+    padding: 8px;
+}
+
+.search-container input::placeholder {
+    color: var(--text-secondary);
+}
+
+.search-container button {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 8px;
+    transition: color var(--transition-speed);
+}
+
+.search-container button:hover {
+    color: var(--primary-color);
+}
+
+/* Menu */
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: var(--border-radius);
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 16px;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+}
+
+.menu-item:hover {
+    background-color: var(--background-light);
+    color: var(--text-color);
+}
+
+.menu-item.active {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
+.menu-item i {
+    font-size: 18px;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    height: 100%;
+    overflow-y: auto;
+    padding: 20px;
+    background-color: var(--background-dark);
+}
+
+/* Views */
+.view {
+    display: none;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.view:not(.hidden) {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Channels Grid */
+.channels-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.channel-card {
+    background-color: var(--background-card);
+    border-radius: var(--border-radius);
+    padding: 15px;
+    cursor: pointer;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    box-shadow: var(--shadow);
+}
+
+.channel-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+}
+
+.channel-card h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: var(--text-color);
+}
+
+.channel-card p {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+/* Player View */
+.player-view {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--background-dark);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    transition: opacity var(--transition-speed);
+}
+
+.player-view.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.player-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: var(--background-card);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.back-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background-color: transparent;
+    border: none;
+    color: var(--text-color);
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: var(--border-radius);
+    transition: background-color var(--transition-speed);
+}
+
+.back-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.player-controls-top {
+    display: flex;
+    gap: 10px;
+}
+
+.player-controls-top button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-speed);
+}
+
+.player-controls-top button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Video Container */
+.video-container {
+    flex: 1;
+    background-color: #000;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity var(--transition-speed);
+}
+
+.video-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.video-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    color: var(--text-color);
+}
+
+.video-message i {
+    font-size: 40px;
+    color: var(--primary-color);
+}
+
+/* Channel Info */
+.player-info {
+    padding: 20px;
+    background-color: var(--background-card);
+}
+
+.channel-info {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.error-message {
+    margin-top: 10px;
+    padding: 12px;
+    background-color: rgba(255, 59, 48, 0.1);
+    border-left: 4px solid #ff3b30;
+    border-radius: 4px;
+    color: #ff3b30;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.error-message i {
+    font-size: 18px;
+}
+
+/* Loading State */
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 40px;
+    color: var(--text-secondary);
+}
+
+.loading i {
+    font-size: 40px;
+    color: var(--primary-color);
+}
+
+/* Settings */
+.settings-container {
+    background-color: var(--background-card);
+    border-radius: var(--border-radius);
+    padding: 20px;
+}
+
+.setting-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.setting-item:last-child {
+    margin-bottom: 0;
+}
+
+.setting-item label {
+    color: var(--text-color);
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.setting-item input {
+    padding: 12px;
+    background-color: var(--background-light);
+    border: none;
+    border-radius: var(--border-radius);
+    color: var(--text-color);
+    font-size: 14px;
+}
+
+.setting-item input[readonly] {
+    background-color: var(--background-dark);
+    opacity: 0.8;
+    cursor: not-allowed;
+}
+
+.setting-item button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: var(--border-radius);
+    color: var(--text-color);
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+}
+
+.setting-item button:hover {
+    background-color: var(--primary-hover);
+}
+
+/* Categories Grid */
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 10px;
+    background-color: var(--background-light);
+    border-radius: var(--border-radius);
+}
+
+.category-card {
+    background-color: var(--background-dark);
+    border-radius: var(--border-radius);
+    padding: 15px;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    text-align: center;
+    border: 1px solid transparent;
+}
+
+.category-card:hover {
+    background-color: var(--background-light);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.category-card.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.category-card i {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.category-card.active i {
+    color: white;
+}
+
+.selected-category {
+    padding: 10px;
+    background-color: var(--background-light);
+    border-radius: var(--border-radius);
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Loading State */
+.loading-categories {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-secondary);
+}
+
+.loading-categories i {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+/* Utility Classes */
+.hidden {
+    display: none !important;
+}
+
+/* New Player View Styles */
+.player-view {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--background-dark);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+}
+
+.player-view.hidden {
+    display: none;
+}
+
+.player-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: var(--background-card);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.back-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background-color: transparent;
+    border: none;
+    color: var(--text-color);
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: var(--border-radius);
+    transition: background-color var(--transition-speed);
+}
+
+.back-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.player-controls-top {
+    display: flex;
+    gap: 10px;
+}
+
+.player-controls-top button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-speed);
+}
+
+.player-controls-top button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.video-container {
+    flex: 1;
+    background-color: #000;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    color: var(--text-color);
+}
+
+.video-message i {
+    font-size: 40px;
+    color: var(--primary-color);
+}
+
+.player-info {
+    padding: 20px;
+    background-color: var(--background-card);
+}
+
+.channel-info {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.error-message {
+    margin-top: 10px;
+    padding: 12px;
+    background-color: rgba(255, 59, 48, 0.1);
+    border-left: 4px solid #ff3b30;
+    border-radius: 4px;
+    color: #ff3b30;
+}
+
+/* Toast Notifications */
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 24px;
+    border-radius: var(--border-radius);
+    color: white;
+    font-size: 14px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: slideIn 0.3s ease-out, fadeOut 0.3s ease-out 2.7s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.toast.success {
+    background-color: #4caf50;
+}
+
+.toast.error {
+    background-color: #f44336;
+}
+
+.toast i {
+    font-size: 16px;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* Error States */
+.loading-categories.error {
+    color: #f44336;
+}
+
+.loading-categories.error button {
+    margin-top: 15px;
+    padding: 8px 16px;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: var(--border-radius);
+    color: white;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    transition: background-color var(--transition-speed);
+}
+
+.loading-categories.error button:hover {
+    background-color: var(--primary-hover);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .app-container {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .channels-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .channels-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 15px;
+    }
+    
+    .main-content {
+        padding: 20px;
+    }
+    
+    .channel-thumbnail {
+        height: 100px;
+    }
+    
+    .channel-info {
+        padding: 12px;
+    }
+    
+    .player-controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* Focus styles for TV navigation */
+button:focus, input:focus, .channel-card:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(123, 104, 238, 0.5);
+}
+
+/* Remote control navigation */
+.focus-visible {
+    outline: none !important;
+    box-shadow: 0 0 0 3px var(--primary-color) !important;
+    transform: scale(1.03);
+}

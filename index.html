@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPTV Player</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <div class="sidebar">
+            <div class="logo">
+                <h1>IPTV Stream</h1>
+            </div>
+            <div class="search-container">
+                <button id="search-button"><i class="fas fa-search"></i></button>
+                <input type="text" id="search-input" placeholder="Search channels...">
+            </div>
+            <div class="menu">
+                <button class="menu-item active" data-view="all-channels"><i class="fas fa-th-list"></i> All Channels</button>
+                <button class="menu-item" data-view="favorites"><i class="fas fa-heart"></i> Favorites</button>
+                <button class="menu-item" data-view="settings"><i class="fas fa-cog"></i> Settings</button>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="view" id="all-channels-view">
+                <h2>All Channels</h2>
+                <div class="channels-grid" id="channels-container">
+                    <!-- Channels will be loaded here -->
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-pulse"></i>
+                        Loading channels...
+                    </div>
+                </div>
+            </div>
+            
+            <div class="view hidden" id="favorites-view">
+                <h2>Favorite Channels</h2>
+                <div class="channels-grid" id="favorites-container">
+                    <!-- Favorite channels will be loaded here -->
+                    <div class="no-favorites">
+                        <i class="far fa-heart"></i>
+                        No favorite channels yet.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="view hidden" id="settings-view">
+                <h2>Settings</h2>
+                <div class="settings-container">
+                    <div class="setting-item">
+                        <label for="playlist-url">Current Playlist URL:</label>
+                        <input type="text" id="playlist-url" readonly>
+                        <div class="selected-category" id="selected-category">No category selected</div>
+                    </div>
+                    <div class="setting-item">
+                        <label for="main-playlist-url">Main IPTV URL:</label>
+                        <input type="text" id="main-playlist-url" value="https://iptv-org.github.io/iptv/index.category.m3u">
+                        <button id="load-categories"><i class="fas fa-list"></i> Load Categories</button>
+                    </div>
+                    <div class="setting-item">
+                        <label>Categories:</label>
+                        <div class="categories-grid" id="categories-container">
+                            <!-- Categories will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="player-view hidden" id="player-view">
+        <div class="player-header">
+            <button class="back-button" id="back-to-channels">
+                <i class="fas fa-arrow-left"></i> Back to Channels
+            </button>
+            <h3 id="channel-title">Channel Name</h3>
+            <div class="player-controls-top">
+                <button id="add-to-favorites"><i class="far fa-heart"></i></button>
+                <button id="close-player"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="video-container">
+            <video id="video-player" controls autoplay></video>
+            <div class="video-overlay hidden">
+                <div class="video-message">
+                    <i class="fas fa-spinner fa-pulse"></i>
+                    <span>Loading stream...</span>
+                </div>
+            </div>
+        </div>
+        <div class="player-info">
+            <div class="channel-info" id="channel-info">
+                <!-- Channel info will be displayed here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
